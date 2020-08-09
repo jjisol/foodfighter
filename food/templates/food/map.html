@@ -93,7 +93,13 @@ var places = [
   {
     image: '{{ food.image.url }}',
       {% for comment in food.comments.all %}
-        text: '{{ comment.text }}',
+        {% if forloop.counter == 1 %}
+          text1: '{{ comment.text }}',
+        {% elif forloop.counter == 2 %}
+          text2: '{{ comment.text }}',
+        {% elif forloop.counter == 3 %}
+          text3: '{{ comment.text }}',
+        {% endif %}
       {% endfor %}
     address: '{{ food.address }}',
     name: '{{ food.name }}',
@@ -226,7 +232,9 @@ function displayCustomOverlay(marker, place) {
             '                 <div class="ellipsis">' + place.menu + '</div>'+
 			      '		          </div>' +
             '                 <hr><div class="ellipsis"><p>리뷰</p></div>'+
-                        '       <div class="ellipsis">' + place.text + '</div>'+
+                        '       <div class="ellipsis">' + place.text1 + '</div>'+
+                        '       <div class="ellipsis">' + place.text2 + '</div>'+
+                        '       <div class="ellipsis">' + place.text3 + '</div>'+
             '		    </div>' +
             '    </div>' +
             '</div>';
